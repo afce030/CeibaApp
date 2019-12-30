@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/userListFragment">
+
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="com.ceiba.ceibaapp.view.fragments.UserListFragment"
+        android:label="fragment_user_list"
+        tools:layout="@layout/fragment_user_list" >
+        <action
+            android:id="@+id/action_userListFragment_to_postsByUserFragment"
+            app:destination="@id/postsByUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postsByUserFragment"
+        android:name="com.ceiba.ceibaapp.view.fragments.PostsByUserFragment"
+        android:label="fragment_posts_by_user"
+        tools:layout="@layout/fragment_posts_by_user" >
+        <argument
+            android:name="userId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_postsByUserFragment_to_postViewerFragment"
+            app:destination="@id/postViewerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postViewerFragment"
+        android:name="com.ceiba.ceibaapp.view.fragments.PostViewerFragment"
+        android:label="fragment_post_viewer"
+        tools:layout="@layout/fragment_post_viewer" >
+        <argument
+            android:name="postId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
+</navigation>

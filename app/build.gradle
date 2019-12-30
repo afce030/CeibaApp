@@ -1,0 +1,114 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.ceiba.ceibaapp"
+        minSdkVersion 24
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "com.ceiba.ceibaapp.myAndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+        kotlinOptions.suppressWarnings = true
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+}
+
+repositories {
+    google()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    def nav_version = "2.2.0-rc04"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+
+    // Testing dependencies
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.2.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:3.2.0"
+    androidTestImplementation "androidx.test.ext:junit:1.1.1"
+    androidTestImplementation "androidx.test:rules:1.2.0"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:2.2.0"
+    androidTestImplementation "androidx.work:work-testing:2.2.0"
+    testImplementation "junit:junit:4.12"
+
+    testImplementation 'org.mockito:mockito-core:3.2.4'
+    androidTestImplementation 'org.mockito:mockito-android:3.2.4'
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+    androidTestImplementation 'com.github.tmurakami:dexopener:2.0.4'
+
+    debugImplementation ('androidx.fragment:fragment-testing:1.2.0-rc04'){
+        exclude group: 'androidx.test', module : 'core'
+    }
+    debugImplementation 'androidx.test:core:1.3.0-alpha03'
+
+    def dagger_version = 2.24
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    //Dagger support for android
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    def room_version = "2.2.3"
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    def security_version = "1.0.0-alpha02"
+    implementation "androidx.security:security-crypto:$security_version"
+
+    def lifecycle_version = "2.2.0-rc03"
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'org.glassfish:javax.annotation:10.0-b28'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
+
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    kapt 'com.github.bumptech.glide:compiler:4.10.0'
+
+}
+apply plugin: "androidx.navigation.safeargs.kotlin"
